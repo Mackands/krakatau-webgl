@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mount Krakatau Eruption</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; }
+      #unity-canvas { display: block; width: 100%; height: 100%; }
+      #loading {
+        position: fixed; left: 0; right: 0; bottom: 12%;
+        text-align: center; color: #d8c8c0; font: 14px sans-serif; letter-spacing: 0.08em;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="loading">loading 0%</div>
+    <script src="Build/7a5fee3692b7194f8db09fb08c25aca3.loader.js"></script>
+    <script>
+      var loading = document.getElementById("loading");
+
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/045682486d1df8797d99da61bca1d7b9.data.unityweb",
+        frameworkUrl: "Build/d34404728c3b82b415f4dd5fa2fed07d.framework.js.unityweb",
+        codeUrl: "Build/b4b481d7cdb7fdfa8fa3e695cd9efb1d.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Mackands Leo Nardo Octano",
+        productName: "Mount Krakatau Eruption",
+        productVersion: "0.1.0",
+        // A phone at 3x would shade nine times the pixels for the same picture. 1.5x is the
+        // most the extra sharpness is worth here.
+        devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.5),
+      }, function (progress) {
+        loading.textContent = "loading " + Math.round(progress * 100) + "%";
+      }).then(function () {
+        loading.remove();
+      }).catch(function (message) {
+        loading.textContent = message;
+      });
+    </script>
+  </body>
+</html>
